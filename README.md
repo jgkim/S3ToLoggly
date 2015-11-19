@@ -32,7 +32,7 @@ For all of the AWS setup, I used the AWS console following [this example](http:/
     * **Name:** *`S3ToLoggly`*
     * Upload lambda function (zip file you made above.)
     * **Handler*:** *`S3ToLoggly.handler`*
-    * **Role*:** In the drop down click "`S3 execution role`". (This will open a new window to create the role.)
+    * **Role*:** In the drop down click "`S3 execution role`". (This will open a new window to create the role.) You should also manually add a permission for `s3:GetBucketTagging` to the role according to the [issue](https://github.com/psquickitjayant/S3ToLoggly/issues/2).
     * I left the memory at 128MB. In my testing with s3 bucket set upload every 5 minutes this worked for me. You may need to bump this up if your s3 logs are larger.
     * Same advice for Timer, I set it to 10 seconds.
 2. Configure Event Source to call S3ToLoggly when logs added to S3 bucket.
